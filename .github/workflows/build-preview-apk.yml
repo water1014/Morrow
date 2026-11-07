@@ -60,6 +60,13 @@ jobs:
           if auth not in html:
               raise SystemExit("Could not find auth gate to patch for preview")
           html = html.replace(auth, "async function checkAuth(){ await enterApp(); }", 1)
+          # The preview APK has no Flask backend. Never let an unavailable identity
+          # endpoint keep the boot screen visible forever.
+          html = html.replace(
+              "  await loadIdentity();",
+              "  await Promise.race([loadIdentity().catch(()=>{}),pause(1200)]);",
+              1
+          )
           p.write_text(html, encoding="utf-8")
           PY
       - name: Build debug APK
