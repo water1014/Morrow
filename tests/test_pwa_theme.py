@@ -36,7 +36,7 @@ class PwaThemeTest(unittest.TestCase):
 
     def test_cat_icon_assets_cover_pwa_ios_favicon_and_notification_sizes(self):
         manifest = json.loads(Path("static/manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["name"], "Morrow")
+        self.assertEqual(manifest["name"], "宋祁")
         self.assertEqual(manifest["id"], "/")
         self.assertEqual({item["purpose"] for item in manifest["icons"]}, {"any", "maskable"})
         for icon in manifest["icons"]:

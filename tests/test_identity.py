@@ -18,10 +18,10 @@ class IdentityTest(unittest.TestCase):
         self.db.close()
 
     def test_defaults_and_saved_names(self):
-        self.assertEqual(identity.get_identity(self.db)["assistant_name"], "Morrow")
+        self.assertEqual(identity.get_identity(self.db)["assistant_name"], "宋祁")
         identity.save_identity(self.db, {"user_name": " June ", "assistant_name": "Fern"})
         self.assertEqual(identity.get_identity(self.db),
-                         {"brand_name": "Morrow", "user_name": "June", "assistant_name": "Fern", "assistant_pronoun": "他", "user_name_set": True, "assistant_name_set": True})
+                         {"brand_name": "宋祁", "user_name": "June", "assistant_name": "Fern", "assistant_pronoun": "他", "user_name_set": True, "assistant_name_set": True})
 
     def test_default_names_are_distinct_from_explicitly_saved_names(self):
         self.assertFalse(identity.get_identity(self.db)['user_name_set'])
