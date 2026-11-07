@@ -4,8 +4,8 @@ import sqlite3
 from contextlib import closing
 from pathlib import Path
 
-BRAND_NAME = "Morrow"
-DEFAULTS = {"user_name": "你", "assistant_name": "Morrow", "assistant_pronoun": "他"}
+BRAND_NAME = "宋祁"
+DEFAULTS = {"user_name": "你", "assistant_name": "宋祁", "assistant_pronoun": "他"}
 
 
 def get_identity(db=None, *, db_path=None):
