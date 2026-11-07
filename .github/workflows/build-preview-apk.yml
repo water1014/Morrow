@@ -1,0 +1,67 @@
+name: Build Morrow preview APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/songqi-companion
+    paths:
+      - "static/**"
+      - "preview-apk/**"
+      - ".github/workflows/build-preview-apk.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/songqi-companion
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+      - name: Prepare bundled web preview
+        run: |
+          mkdir -p preview-apk/app/src/main/assets/static
+          cp -R static/. preview-apk/app/src/main/assets/static/
+          cp static/index.html preview-apk/app/src/main/assets/index.html
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("preview-apk/app/src/main/assets/index.html")
+          html = p.read_text(encoding="utf-8")
+          marker = "<script>\nconst $="
+          mock = """<script>
+          (() => {
+            const realFetch = window.fetch.bind(window);
+            window.fetch = async (input, init = {}) => {
+              const url = typeof input === "string" ? input : input.url;
+              if (url.endsWith("/api/auth/check")) return new Response(JSON.stringify({authed:true}), {status:200, headers:{"Content-Type":"application/json"}});
+              if (url.endsWith("/api/identity")) return new Response(JSON.stringify({brand_name:"宋祁",user_name:"你",assistant_name:"宋祁",assistant_pronoun:"他",assistant_name_set:false,user_name_set:false}), {status:200, headers:{"Content-Type":"application/json"}});
+              return realFetch(input, init);
+            };
+          })();
+          </script>
+          """
+          if marker not in html:
+              raise SystemExit("Could not find Morrow app bootstrap marker")
+          p.write_text(html.replace(marker, mock + marker, 1), encoding="utf-8")
+          PY
+      - name: Build debug APK
+        working-directory: preview-apk
+        run: gradle --no-daemon assembleDebug
+      - name: Publish APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: morrow-songqi-preview-apk
+          path: preview-apk/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
