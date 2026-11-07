@@ -2993,7 +2993,90 @@
       .moments-results{display:flex;flex-direction:column;gap:8px}.moments-result{width:100%;padding:12px 13px;border:1px solid var(--glass-border);border-radius:15px;text-align:left;background:color-mix(in srgb,var(--glass) 90%,transparent);color:var(--text-primary)}.moments-result-meta{display:flex;justify-content:space-between;gap:10px;color:var(--text-secondary);font:9px "JetBrains Mono",monospace}.moments-result-text{margin-top:6px;font-size:12px;line-height:1.55}.moments-result-text mark{background:var(--accent-soft);color:inherit}.moments-chooser{display:flex;flex-direction:column;gap:8px}.moments-chooser button{display:flex;justify-content:space-between;padding:11px 12px;border:1px solid var(--glass-border);border-radius:13px;background:var(--glass);color:var(--text-primary)}
       .moment-hit{padding:0 2px;border-radius:3px;background:color-mix(in srgb,var(--accent) 28%,transparent);color:inherit;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 12%,transparent)}
     </style>
-  </head>
+  
+  <style id="songqi-home-refresh">
+  :root{--sq-blue:#7893a8;--sq-ink:#536d82;--sq-muted:#98aab8;--sq-line:#e4ebf0;--sq-bg:#f7f9fb;--sq-soft:#e1eaf0}
+  #view-home.sq-home{padding:calc(env(safe-area-inset-top) + 10px) 20px calc(var(--nav-h) + env(safe-area-inset-bottom) + 22px);background:var(--sq-bg);color:var(--sq-ink);overflow-y:auto}
+  #view-home.sq-home .sq-home-top{height:34px;display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+  .sq-menu-trigger,.sq-more-trigger{width:34px;height:34px;display:grid;place-items:center;padding:0;border:0;background:transparent;color:#8097a9}
+  .sq-menu-trigger svg,.sq-more-trigger svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+  .sq-top-caption{font-size:9px;letter-spacing:2.3px;color:#a0afba}
+  #view-home .sq-relationship{text-align:center;padding:24px 0 22px}
+  .sq-avatars{display:flex;align-items:center;justify-content:center;gap:15px;margin-bottom:11px}
+  .sq-avatar{width:72px;height:72px;flex:none;border-radius:50%;display:grid;place-items:center;border:2px solid #fff;background:linear-gradient(145deg,#dce7ef,#c6d7e2);box-shadow:0 3px 12px rgba(84,112,133,.10);color:#718ba0;font-size:21px;overflow:hidden}
+  .sq-heart{font-size:16px;color:#9db3c3}
+  .sq-together-line{font-size:13px;letter-spacing:.2px;color:#6b8295;display:flex;justify-content:center;align-items:baseline;gap:4px}
+  .sq-together-line strong{font-family:Georgia,serif;font-size:18px;font-weight:500;color:#58758d}
+  .sq-date-line{font-size:10px;color:#a0afba;margin-top:5px;letter-spacing:.35px}
+  .sq-live-status{font-size:10px;color:#9aaab6;margin-top:8px;display:flex;justify-content:center;align-items:center;gap:6px}
+  .sq-status-dot{width:5px;height:5px;border-radius:50%;background:#9db6c6}
+  .sq-anniversary{display:flex;align-items:center;justify-content:space-between;padding:15px 2px;border-top:1px solid var(--sq-line);border-bottom:1px solid var(--sq-line)}
+  .sq-anniversary-copy,.sq-anniversary-date{display:flex;flex-direction:column;gap:6px}
+  .sq-eyebrow,.sq-module-heading{font-size:9px;letter-spacing:1.5px;color:#9aabb8}
+  .sq-anniversary-copy strong{font-size:14px;font-weight:500;color:#627b8f}
+  .sq-anniversary-date{text-align:right}
+  .sq-anniversary-date span{font-family:Georgia,serif;font-size:19px;color:#7892a7}
+  .sq-anniversary-date small{font-size:10px;color:#9aabb8}
+  .sq-home-media{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:21px 0 17px;align-items:center}
+  .sq-music-module,.sq-photo-module{min-width:0}
+  .sq-record-button{width:100%;height:116px;display:grid;place-items:center;border:0;background:transparent;padding:0}
+  .sq-vinyl{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle,#344754 0 2px,#405563 2.7px 3.4px,#303f4a 4px 5px);box-shadow:0 4px 12px rgba(49,69,83,.17);animation:sq-record-spin 8s linear infinite;animation-play-state:paused}
+  .sq-vinyl.playing{animation-play-state:running}
+  .sq-vinyl-label{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#d3e0e8;color:#718a9e;border:1px solid #b8cbd8;font-size:13px}
+  @keyframes sq-record-spin{to{transform:rotate(360deg)}}
+  .sq-track-meta{display:flex;flex-direction:column;gap:3px;margin-top:2px}
+  .sq-track-meta strong{font-size:12px;font-weight:500;color:#627b8f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sq-track-meta span{font-size:10px;color:#9aabb8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sq-track-open{margin-top:7px;padding:0;border:0;background:transparent;color:#8299aa;font-size:10px}
+  .sq-track-open span{font-size:13px;margin-left:3px}
+  .sq-photo-heading{text-align:right}
+  .sq-photo-heading span{margin-left:4px;color:#b0bdc7;font-size:8px}
+  .sq-photo-stack{position:relative;width:100%;height:116px;border:0;background:transparent;padding:0;display:block}
+  .sq-photo-card{position:absolute;top:7px;left:50%;width:72px;height:94px;margin-left:-36px;border:3px solid #fff;border-radius:4px;box-shadow:0 3px 10px rgba(78,104,124,.13);display:grid;place-items:center;color:#8ca3b4}
+  .sq-photo-card i{font-style:normal;font-size:15px}
+  .sq-photo-back{transform:translateX(-22px) rotate(-12deg);background:#cbdbe5}
+  .sq-photo-middle{transform:translateX(17px) rotate(10deg);background:#e1e9ef}
+  .sq-photo-front{transform:translateX(-2px) rotate(-1deg);background:#d4e1e9}
+  .sq-photo-open{display:block;margin-left:auto}
+  .sq-note-area{padding:12px 1px 15px;border-top:1px solid var(--sq-line)}
+  .sq-note-heading{display:flex;justify-content:space-between;align-items:center;color:#72899b;font-size:11px}
+  .sq-note-heading span+span{font-size:9px;letter-spacing:1.4px;color:#a5b3bd}
+  .sq-note-content{font-size:12px;line-height:1.8;color:#71889a;padding:8px 0 2px;min-height:28px}
+  .sq-home-quicklinks{display:flex;gap:18px;padding:10px 0 15px;border-top:1px solid var(--sq-line);border-bottom:1px solid var(--sq-line)}
+  .sq-quicklink{flex:1;min-width:0;display:flex;align-items:center;gap:8px;text-align:left;padding:4px 0;border:0;background:transparent;color:#6e879a}
+  .sq-quick-icon{width:29px;height:29px;border:1px solid #dce6ed;border-radius:50%;display:grid;place-items:center;color:#819bad;font-size:14px;flex:none}
+  .sq-quicklink>span:nth-child(2){display:flex;flex-direction:column;gap:3px;min-width:0}
+  .sq-quicklink strong{font-size:12px;font-weight:500}
+  .sq-quicklink small{font-size:9px;color:#a0afba;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sq-arrow{margin-left:auto;color:#a1b1bd;font-size:17px}
+  .sq-todo-area{padding:16px 1px 8px}
+  .sq-todo-heading{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .sq-todo-heading strong{font-size:13px;font-weight:500;color:#667f92}
+  .sq-todo-heading span{font-size:9px;letter-spacing:1.3px;color:#a1b0bb}
+  #view-home .todo-list{padding:0}
+  #view-home .todo-input{width:100%;border:0;border-bottom:1px solid #e5ebf0;background:transparent;border-radius:0;padding:10px 2px;color:#627b8f;font-size:12px;outline:none}
+  #view-home .todo-input::placeholder{color:#aab7c0}
+  #view-home .todo-done-head{font-size:10px;color:#9aabb8;padding:9px 0}
+  #view-home .sticky-note,#view-home .night-lamp,#view-home #clock{display:none!important}
+  .sq-bottom-nav{left:12px;right:12px;bottom:max(8px,env(safe-area-inset-bottom));height:58px;border:1px solid #e4ebf0;background:rgba(249,251,253,.96);border-radius:18px;box-shadow:0 4px 16px rgba(75,101,122,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .sq-bottom-nav .nav-item{color:#9aaab6;font-size:10px;letter-spacing:0;text-transform:none;gap:3px}
+  .sq-bottom-nav .nav-item svg{width:19px;height:19px;stroke-width:1.45}
+  .sq-bottom-nav .nav-item.active{color:#587991}
+  .sq-sidebar{position:fixed;inset:0;z-index:500;visibility:hidden;pointer-events:none;transition:visibility .25s}
+  .sq-sidebar.open{visibility:visible;pointer-events:auto}
+  .sq-sidebar-scrim{position:absolute;inset:0;width:100%;height:100%;background:rgba(37,57,73,.24);opacity:0;transition:opacity .25s}
+  .sq-sidebar.open .sq-sidebar-scrim{opacity:1}
+  .sq-sidebar-panel{position:absolute;top:0;bottom:0;left:0;width:min(280px,82vw);padding:calc(env(safe-area-inset-top) + 22px) 22px calc(env(safe-area-inset-bottom) + 20px);background:#f7f9fb;box-shadow:8px 0 28px rgba(50,75,94,.13);transform:translateX(-102%);transition:transform .28s cubic-bezier(.2,.75,.25,1)}
+  .sq-sidebar.open .sq-sidebar-panel{transform:translateX(0)}
+  .sq-sidebar-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:22px;margin-bottom:12px;border-bottom:1px solid var(--sq-line);font-size:10px;letter-spacing:2px;color:#91a4b3}
+  .sq-sidebar-head button{font-size:24px;color:#7e95a7}
+  .sq-sidebar-panel>button{width:100%;display:flex;align-items:center;gap:14px;padding:15px 3px;text-align:left;border:0;border-bottom:1px solid #edf1f4;background:transparent;color:#7991a4;font-size:17px}
+  .sq-sidebar-panel>button span{font-size:13px;color:#627b8f}
+  @media(min-width:700px){#view-home.sq-home{max-width:620px;margin:0 auto;padding-left:34px;padding-right:34px}.sq-home-media{gap:34px}.sq-avatar{width:76px;height:76px}}
+  @media(max-width:360px){#view-home.sq-home{padding-left:15px;padding-right:15px}.sq-home-media{gap:8px}.sq-vinyl{width:88px;height:88px}}
+  </style>
+
+</head>
 <body>
 
   <div id="bootScreen" role="status" aria-live="polite" aria-label="Loading 宋祁" lang="en">
@@ -3045,68 +3128,92 @@
   <div id="app">
 
     <!-- 小窝 -->
-    <section class="view" id="view-home">
-      <div class="home-head">
-        <div class="page-title" id="greeting">小窝</div>
-        <div class="status-line"><span class="pulse"></span><span id="assistantStatus">宋祁在想你</span></div>
-      </div>
-      <div class="glass-card time-card">
-        <button class="night-lamp" id="nightLamp" aria-label="夜间模式" title="夜间模式">
-          <svg viewBox="0 0 20 42" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="10" y1="0" x2="10" y2="25"/>
-            <path class="drop" d="M10 25C10 25 4.7 31.2 4.7 35.5A5.3 5.3 0 0 0 15.3 35.5C15.3 31.2 10 25 10 25Z" fill="currentColor" fill-opacity=".14"/>
-          </svg>
+    <!-- 宋祁首页：关系主页 -->
+    <section class="view sq-home" id="view-home">
+      <header class="sq-home-top">
+        <button class="sq-menu-trigger" id="sqSidebarOpen" type="button" aria-label="打开导航菜单">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <div class="time-left">
-          <div class="time-sub-title">THE TICKING OF THE UNIVERSE</div>
-          <div id="clock">--:--<span class="sec">:--</span></div>
-          <div class="date-weather-line" id="dateLine"></div>
+        <span class="sq-top-caption">OUR DAYS</span>
+        <button class="sq-more-trigger" type="button" aria-label="设置" onclick="document.querySelector('.nav-item[data-view=settings]')?.click()">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+        </button>
+      </header>
+
+      <section class="sq-relationship" aria-label="我们的关系">
+        <div class="sq-avatars">
+          <div class="sq-avatar sq-avatar-user" aria-label="你的头像"><span>你</span></div>
+          <span class="sq-heart" aria-hidden="true">♡</span>
+          <div class="sq-avatar sq-avatar-partner" aria-label="宋祁头像"><span>祁</span></div>
         </div>
-        <div class="together-count">
-          <div class="v" id="togetherDays">--d</div>
-          <div class="k">together</div>
+        <div class="sq-together-line"><span>在一起的第</span><strong id="togetherDays">--</strong><span>天</span></div>
+        <div class="sq-date-line" id="dateLine"></div>
+        <div class="sq-live-status"><span class="sq-status-dot"></span><span id="assistantStatus">宋祁在想你</span></div>
+      </section>
+
+      <section class="sq-anniversary" aria-label="纪念日">
+        <div class="sq-anniversary-copy">
+          <span class="sq-eyebrow">SPECIAL DAYS</span>
+          <strong id="sqAnniversaryName">我们的纪念日</strong>
         </div>
-      </div>
-      <div class="home-row">
-        <div class="sticky-note" id="stickyNote">
-          <span class="clip" id="noteClip"><svg viewBox="0 0 28 46" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L9 33A5 5 0 0 0 19 33L19 11A7 7 0 0 0 5 11L5 35A9 9 0 0 0 23 35L23 16"/></svg></span>
-          <div id="noteText">…</div>
-          <div class="note-nook-stamp" aria-hidden="true"><span>——宋祁</span></div>
+        <div class="sq-anniversary-date">
+          <span id="sqAnniversaryDate">♡</span>
+          <small id="sqAnniversaryCountdown">在这里记录重要日子</small>
         </div>
-        <div class="home-shortcuts">
-          <button class="glass-card home-entry diary-entry" id="diaryEntry" type="button"><span class="entry-label">KEPT</span><span class="entry-status" id="diaryEntryStatus">blank</span></button>
-          <button class="glass-card home-entry cycle-entry" id="cycleEntry" type="button"><span class="entry-label">Cycle</span><span class="entry-status" id="cycleEntryStatus">寻常日</span></button>
+      </section>
+
+      <section class="sq-home-media" aria-label="音乐与照片">
+        <div class="sq-music-module">
+          <div class="sq-module-heading">MUSIC</div>
+          <button class="sq-record-button" id="sqOpenMusic" type="button" aria-label="打开音乐播放器">
+            <span class="sq-vinyl" id="sqHomeVinyl"><span class="sq-vinyl-label" id="sqVinylLabel">♫</span></span>
+          </button>
+          <div class="sq-track-meta">
+            <strong id="sqHomeTrack">选择一首歌曲</strong>
+            <span id="sqHomeArtist">音乐播放器</span>
+          </div>
+          <button class="sq-track-open" id="sqMusicOpenText" type="button">打开播放器 <span>↗</span></button>
         </div>
-      </div>
-      <div class="glass-card todo-card">
-        <div class="card-title">待办</div>
-        <svg class="todo-sketch-star" viewBox="0 0 34 34" fill="none" stroke="currentColor" aria-hidden="true">
-          <path d="m17 4 3.2 9.2 9.7.2-7.7 5.8 2.6 9.4-7.8-5.5-7.8 5.5 2.6-9.4-7.7-5.8 7.1-.2"/>
-          <path d="M5.5 10.5c1.2-1.4 2.5-2.1 4-2.4" stroke-dasharray="1.2 2.4"/>
-        </svg>
+        <div class="sq-photo-module">
+          <div class="sq-module-heading sq-photo-heading">PHOTOS <span>MEMORIES</span></div>
+          <button class="sq-photo-stack" id="sqPhotoStack" type="button" aria-label="打开记忆">
+            <span class="sq-photo-card sq-photo-back"><i>♡</i></span>
+            <span class="sq-photo-card sq-photo-middle"><i>♡</i></span>
+            <span class="sq-photo-card sq-photo-front"><i>＋</i></span>
+          </button>
+          <button class="sq-track-open sq-photo-open" type="button" id="sqPhotoOpenText">照片与回忆 <span>↗</span></button>
+        </div>
+      </section>
+
+      <section class="sq-note-area">
+        <div class="sq-note-heading"><span>留下的一句话</span><span>NOTE</span></div>
+        <div class="sq-note-content" id="noteText">…</div>
+      </section>
+
+      <section class="sq-home-quicklinks" aria-label="常用入口">
+        <button class="sq-quicklink" id="diaryEntry" type="button">
+          <span class="sq-quick-icon">✎</span><span><strong>日记</strong><small id="diaryEntryStatus">看看最近的记录</small></span><span class="sq-arrow">›</span>
+        </button>
+        <button class="sq-quicklink" id="cycleEntry" type="button">
+          <span class="sq-quick-icon">◷</span><span><strong>日历</strong><small id="cycleEntryStatus">重要日子与日常</small></span><span class="sq-arrow">›</span>
+        </button>
+      </section>
+
+      <section class="sq-todo-area">
+        <div class="sq-todo-heading"><strong>一起完成的小事</strong><span>TOGETHER</span></div>
         <div class="todo-list" id="todoList"></div>
-        <input class="todo-input" id="todoInput" placeholder="加一条…回车" autocomplete="off">
-        <div class="todo-done-head" id="todoDoneHead" style="display:none">
-          <span class="caret">›</span><span id="todoDoneLabel">已完成</span>
-        </div>
+        <input class="todo-input" id="todoInput" placeholder="记下一件小事…" autocomplete="off">
+        <div class="todo-done-head" id="todoDoneHead" style="display:none"><span class="caret">›</span><span id="todoDoneLabel">已完成</span></div>
         <div class="todo-list" id="todoDoneList" style="display:none"></div>
-      </div>
-      <svg class="postcard-symbols" aria-hidden="true" width="0" height="0"><defs>
-        <symbol id="postcard-light" viewBox="0 0 64 64"><path d="M11 13h25v31H11zM15 17h17v23H15zM23.5 17v23M15 28h17M9 48h46"/><path class="postcard-wash" d="M38 36h15l-3-9h-9z"/><path d="M38 36h15l-3-9h-9zM45.5 36v12M41 48h9M19 54h27"/></symbol>
-        <symbol id="postcard-leaf" viewBox="0 0 64 64"><path class="postcard-wash" d="M29 43C14 33 22 17 46 13c2 20-2 32-17 30z"/><path d="M29 43C14 33 22 17 46 13c2 20-2 32-17 30zM19 53l23-33M28 40l-3-10M33 33l10-2M38 26l-2-7M16 55h25"/></symbol>
-        <symbol id="postcard-tomorrow" viewBox="0 0 64 64"><path class="postcard-wash" d="M12 24h40v27H12z"/><path d="M12 24h40v27H12zM12 24l20 16 20-16M12 51l14-15M52 51L38 36M22 23v-9h22v9M28 19h10M18 56h28"/></symbol>
-      </defs></svg>
-      <div class="horizon-card" id="homePostcard" data-design="tomorrow" hidden>
-        <div class="horizon-stamp" aria-hidden="true"><svg class="postcard-art" viewBox="0 0 64 64"><use href="#postcard-tomorrow"/></svg></div>
-        <div class="horizon-header">
-          <span class="horizon-title">a little tomorrow</span>
-          <span class="horizon-distance">Tomorrow</span>
-        </div>
-          <div class="horizon-quote">明天，也留一点时间给我们。</div>
-      </div>
-      <div class="unread-hint" id="unreadHint" style="display:none">
-        <span>💬</span><span id="unreadText"></span>
-      </div>
+      </section>
+
+      <div id="stickyNote" hidden><span id="noteClip"></span></div>
+      <button class="night-lamp" id="nightLamp" type="button" hidden aria-label="夜间模式"></button>
+      <div id="clock" hidden>--:--</div>
+      <div id="diaryEntryStatusLegacy" hidden></div>
+      <div id="cycleEntryStatusLegacy" hidden></div>
+      <div class="horizon-card" id="homePostcard" hidden></div>
+      <div class="unread-hint" id="unreadHint" style="display:none"><span>💬</span><span id="unreadText"></span></div>
     </section>
 
     <!-- Cycle -->
@@ -4147,18 +4254,24 @@
       </div>
     </section>
 
-    <nav class="bottom-nav">
-      <button class="nav-item" data-view="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>home</span></button>
-      <button class="nav-item" data-view="memory">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>memory</span></button>
-      <button class="nav-item" data-view="chat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg><span>chat</span><span class="badge" id="chatBadge"></span></button>
-      <button class="nav-item" data-view="night">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span>tidy</span></button>
-      <button class="nav-item" data-view="settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>set</span></button>
+    <nav class="bottom-nav sq-bottom-nav" aria-label="主导航">
+      <button class="nav-item" data-view="chat" aria-label="我们"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"/></svg><span>我们</span></button>
+      <button class="nav-item" data-view="memory" aria-label="记忆"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg><span>记忆</span></button>
+      <button class="nav-item active" data-view="home" aria-label="首页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>首页</span></button>
+      <button class="nav-item" data-view="night" aria-label="房间"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1"/></svg><span>房间</span></button>
+      <button class="nav-item" data-view="settings" aria-label="我的"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>我的</span></button>
     </nav>
+    <aside class="sq-sidebar" id="sqSidebar" aria-hidden="true">
+      <button class="sq-sidebar-scrim" id="sqSidebarClose" aria-label="关闭导航"></button>
+      <div class="sq-sidebar-panel">
+        <div class="sq-sidebar-head"><span>MENU</span><button id="sqSidebarDismiss" aria-label="关闭">×</button></div>
+        <button data-target="chat">♡ <span>我们</span></button>
+        <button data-target="memory">▤ <span>记忆</span></button>
+        <button data-target="home">⌂ <span>首页</span></button>
+        <button data-target="night">▦ <span>房间</span></button>
+        <button data-target="settings">○ <span>我的</span></button>
+      </div>
+    </aside>
   </div>
 
   <div class="music-player" id="musicPlayer" hidden>
@@ -10456,5 +10569,27 @@ addEventListener("visibilitychange",()=>{if(!document.hidden)markNookActivity();
     });
   }
 </script>
+
+<script id="songqi-home-interactions">
+(()=> {
+ const root=document.getElementById("app"); if(!root)return;
+ const sidebar=document.getElementById("sqSidebar");
+ const open=()=>{sidebar?.classList.add("open");sidebar?.setAttribute("aria-hidden","false");};
+ const close=()=>{sidebar?.classList.remove("open");sidebar?.setAttribute("aria-hidden","true");};
+ document.getElementById("sqSidebarOpen")?.addEventListener("click",open);
+ document.getElementById("sqSidebarClose")?.addEventListener("click",close);
+ document.getElementById("sqSidebarDismiss")?.addEventListener("click",close);
+ sidebar?.querySelectorAll("[data-target]")?.forEach(button=>button.addEventListener("click",()=>{document.querySelector('.nav-item[data-view="'+button.dataset.target+'"]')?.click();close();}));
+ const openMusic=()=>document.getElementById("musicDisc")?.click();
+ document.getElementById("sqOpenMusic")?.addEventListener("click",openMusic);
+ document.getElementById("sqMusicOpenText")?.addEventListener("click",openMusic);
+ document.getElementById("sqPhotoStack")?.addEventListener("click",()=>document.querySelector('.nav-item[data-view="memory"]')?.click());
+ document.getElementById("sqPhotoOpenText")?.addEventListener("click",()=>document.querySelector('.nav-item[data-view="memory"]')?.click());
+ const syncRecord=()=>{const player=document.getElementById("musicPlayer");const vinyl=document.getElementById("sqHomeVinyl");const title=document.getElementById("sqHomeTrack");const artist=document.getElementById("sqHomeArtist");const cover=document.getElementById("musicDiscCover");if(!player||!vinyl)return;vinyl.classList.toggle("playing",player.classList.contains("playing"));if(cover&&cover.style.backgroundImage){document.getElementById("sqVinylLabel").style.backgroundImage=cover.style.backgroundImage;document.getElementById("sqVinylLabel").style.backgroundSize="cover";document.getElementById("sqVinylLabel").textContent="";}const song=document.getElementById("musicSheetSong"),singer=document.getElementById("musicSheetArtist");if(song?.textContent)title.textContent=song.textContent;if(singer?.textContent)artist.textContent=singer.textContent;};
+ new MutationObserver(syncRecord).observe(document.getElementById("musicPlayer")||root,{attributes:true,subtree:true,attributeFilter:["class","style","hidden"]});
+ setTimeout(syncRecord,800);
+})();
+</script>
+
 </body>
 </html>
