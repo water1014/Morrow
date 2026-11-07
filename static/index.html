@@ -3212,7 +3212,7 @@
       <div id="clock" hidden>--:--</div>
       <div id="diaryEntryStatusLegacy" hidden></div>
       <div id="cycleEntryStatusLegacy" hidden></div>
-      <div class="horizon-card" id="homePostcard" hidden></div>
+      <div class="horizon-card" id="homePostcard" data-design="tomorrow" hidden><div class="horizon-stamp" aria-hidden="true"><svg class="postcard-art" viewBox="0 0 64 64"><use href="#postcard-tomorrow"></use></svg></div><div class="horizon-header"><span class="horizon-title">a little tomorrow</span><span class="horizon-distance">Tomorrow</span></div><div class="horizon-quote">明天，也留一点时间给我们。</div></div>
       <div class="unread-hint" id="unreadHint" style="display:none"><span>💬</span><span id="unreadText"></span></div>
     </section>
 
@@ -5378,9 +5378,9 @@ $("#weDateOpen").onclick=()=>{
 function tickClock(){
   const d=new Date(),hh=String(d.getHours()).padStart(2,"0"),mm=String(d.getMinutes()).padStart(2,"0"),ss=String(d.getSeconds()).padStart(2,"0");
   $("#clock").innerHTML=hh+'<span class="blink">:</span>'+mm+'<span class="sec">:'+ss+'</span>';
-  $("#togetherDays").textContent=togetherDays()+"d";
+  $("#togetherDays").textContent=String(togetherDays());
   const date=d.toLocaleDateString("zh-CN",{month:"long",day:"numeric",weekday:"long"});
-  $("#dateLine").textContent=date+" · "+homeWeatherText;
+  const relationshipDate=TOGETHER_DATE||legacyTogetherDate();$("#dateLine").textContent=relationshipDate?relationshipDate.replaceAll("-","."):date;
 }
 setInterval(()=>{if($("#view-home").classList.contains("active"))tickClock();},1000);
 async function loadHome(){
@@ -10585,6 +10585,9 @@ addEventListener("visibilitychange",()=>{if(!document.hidden)markNookActivity();
  document.getElementById("sqMusicOpenText")?.addEventListener("click",openMusic);
  document.getElementById("sqPhotoStack")?.addEventListener("click",()=>document.querySelector('.nav-item[data-view="memory"]')?.click());
  document.getElementById("sqPhotoOpenText")?.addEventListener("click",()=>document.querySelector('.nav-item[data-view="memory"]')?.click());
+ const avatarSync=()=>{const user=localStorage.getItem("dailyUserAvatar")||"";const partner=localStorage.getItem("dailyAssistantAvatar")||"";const apply=(selector,value)=>{const node=document.querySelector(selector);if(!node)return;if(value){node.style.backgroundImage='url("'+value.replace(/"/g,"%22")+'")';node.style.backgroundSize="cover";node.style.backgroundPosition="center";node.querySelector("span")?.setAttribute("hidden","");}else{node.style.backgroundImage="";node.querySelector("span")?.removeAttribute("hidden");}};apply(".sq-avatar-user",user);apply(".sq-avatar-partner",partner);};
+ avatarSync();
+ window.addEventListener("storage",avatarSync);
  const syncRecord=()=>{const player=document.getElementById("musicPlayer");const vinyl=document.getElementById("sqHomeVinyl");const title=document.getElementById("sqHomeTrack");const artist=document.getElementById("sqHomeArtist");const cover=document.getElementById("musicDiscCover");if(!player||!vinyl)return;vinyl.classList.toggle("playing",player.classList.contains("playing"));if(cover&&cover.style.backgroundImage){document.getElementById("sqVinylLabel").style.backgroundImage=cover.style.backgroundImage;document.getElementById("sqVinylLabel").style.backgroundSize="cover";document.getElementById("sqVinylLabel").textContent="";}const song=document.getElementById("musicSheetSong"),singer=document.getElementById("musicSheetArtist");if(song?.textContent)title.textContent=song.textContent;if(singer?.textContent)artist.textContent=singer.textContent;};
  new MutationObserver(syncRecord).observe(document.getElementById("musicPlayer")||root,{attributes:true,subtree:true,attributeFilter:["class","style","hidden"]});
  setTimeout(syncRecord,800);
